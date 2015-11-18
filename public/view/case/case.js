@@ -5,7 +5,7 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 
 	$scope.imgfiletype = [];
 	$scope.audiofiletype = [];
-	$scope.commsfeedback = [];
+	//$scope.commsfeedback = [];
 
 	if($routeParams.id){
 		CaselistFactory.getMarkscheme($routeParams.id).then(

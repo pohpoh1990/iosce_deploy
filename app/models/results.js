@@ -10,7 +10,7 @@ var ResultSchema = new mongoose.Schema ({
 	date: {type:Date, default:Date.now},
 	patientscore: Number,
 	examinerscore: Number,
-	commsfeedback: Array
+	commsfeedback: String
 });
 
-module.exports = mongoose.model('results', ResultSchema);
+module.exports = mongoose.model('caseresults', ResultSchema);

@@ -78,9 +78,7 @@
   <div class="form-group">
     <label class="col-md-8 pull-left formWrap">Comments:</label>
     <div class="col-md-12 formWrap">          
-      <textarea rows="2" ng-model="commsfeedback[0]" class="form-control" id="comment" placeholder="Enter comments">
-      </textarea>
-      <textarea rows="2" ng-repeat="value in commsfeedback track by $index" ng-model="commsfeedback[$index+1]" class="form-control" id="comment" placeholder="Enter comments">
+      <textarea rows="2" ng-model="commsfeedback" class="form-control" id="comment" placeholder="Enter comments">
       </textarea>
     </div>
   </div>
