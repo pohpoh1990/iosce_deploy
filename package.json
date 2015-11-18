@@ -1,0 +1,28 @@
+{
+  "name": "testosce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Sui Poh Tee",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^1.5.0",
+    "body-parser": "^1.14.1",
+    "connect-mongo": "^0.8.2",
+    "cookie-parser": "^1.4.0",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "gridfs-stream": "^1.1.1",
+    "mongoose": "^4.2.4",
+    "multer": "^1.1.0",
+    "node-uuid": "^1.4.4",
+    "nodemailer": "^1.9.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "xoauth2": "^1.1.0"
+  }
+}

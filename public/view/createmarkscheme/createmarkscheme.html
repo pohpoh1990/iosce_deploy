@@ -1,0 +1,30 @@
+<div class="col-md-12">
+	<h1>Create Examination Mark Scheme</h1>
+</div>
+
+<form class="form-horizontal">
+	<div class="form-group">
+		<label class="control-label col-md-3">Title: </label>
+		<div class="col-md-9">
+			<div class="col-md-9 formWrap">
+				<input class="form-control" ng-model="examination.title" placeholder="Enter title">
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Mark Scheme: </label>
+		<div class="col-md-9" ng-class="{'col-md-offset-3': shift($index)}" ng-repeat="value in examination.markscheme track by $index">
+			<div class="col-md-9 formWrap">
+				<input class="form-control" ng-model="examination.markscheme[$index]" placeholder="Enter mark scheme">
+			</div>
+			<div class="col-md-3">
+				<button class="btn btn-info" ng-click="add($index)">Add</button>
+				<button class="btn btn-warning" ng-click="del($index)">Delete</button>
+			</div>
+		</div>
+	</div>
+
+
+	<button class="btn btn-default pull-right" ng-click="submit()">Submit</button>
+
+</form>

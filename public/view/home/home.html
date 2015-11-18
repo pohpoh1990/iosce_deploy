@@ -1,0 +1,20 @@
+<div class="col-md-12 text-center cases">
+	<h1>Select Examination</h1>
+	<div class="col-md-8 col-md-offset-2">
+		<input ng-model="search.title" class="form-control" placeholder="Search">
+	</div>
+</div>
+<table class="table table-striped listcase cases">
+	<thead>
+	  <tr>
+	    <th></th>
+	  </tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="examination in examinations | filter:search">
+			<td>	
+				<a href="/#/scenariolist/{{examination._id}}"><div class="listcase">{{examination.title}}</div></a>
+			</td>
+		</tr>
+	</tbody>
+</table>

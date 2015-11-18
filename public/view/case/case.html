@@ -1,0 +1,99 @@
+<div class="col-md-12 title">
+  <button class="btn btn-default btn-sm casebtn" ng-click="back()">
+    <span class="glyphicon glyphicon-menu-left"></span>
+  </button>
+  <h1>Case: {{onecase.title}}</h1>
+</div>
+
+
+<form class="form-horizontal listcase">
+    <label class="control-label col-md-3">Who are you marking? </label>
+    <div class="col-md-9">
+      <div class="col-md-5 formWrap">
+        <input class="form-control" ng-model="peerSelected" bs-options="name as name.email for name in peers" bs-typeahead placeholder="Enter email / name" ng-disabled="!currentUser">
+        <p class="text-warning small" ng-show="!currentUser">
+          Please <a href='#/login'>log in</a> or <a href="#/register">register</a> to search user!
+        </p>
+      </div>
+    </div>
+    <label class="control-label col-md-3" ng-hide="timerstarted">Station duration</label>
+    <div class="col-md-9" ng-hide="timerstarted">
+      <div class="col-md-1 formWrap" >
+        <input type="number" min="1" max="10"  ng-model="duration" class="form-control">
+      </div>
+   </div>
+    <label class="control-label col-md-3" ng-hide="timerstarted">Station warning</label> 
+    <label class="control-label col-md-3" ng-show="timerstarted">{{timer.minute}}:{{timer.second}}</label>
+    <div class="col-md-9">
+      <div class="col-md-1 formWrap" ng-hide="timerstarted">
+        <input type="number" min="1" max="10"  ng-model="warning" class="form-control">
+      </div>
+      <button class="btn btn-default" ng-hide="timerstarted" ng-click="startTimer()">Start</button>
+      <button class="btn btn-default" ng-show="timerstarted" ng-click="stopTimer()">Stop</button>
+    </div>
+    <div>
+
+    </div>
+
+</form>
+<div class="col-md-12">
+  <p class="text-center text-success">Instruction: {{timingmessage}}</p>
+</div>
+<div class="col-md-12 listcase">
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="col-md-6">Markscheme <span class="comingsoon" ng-show="!marks">Click to start marking!</span</th>
+          <th class="col-md-3" ng-show="onecase.brief">Brief</th>
+          <th class="col-md-3" ng-show="onecase.brief">Signs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="ms in markscheme.markscheme track by $index">
+          <td class="marksheet" ng-class="{tick: marks[$index]}">
+            <div ng-click="addTick($index)" >{{ms}}</div>
+          </td>
+          <td ng-show="onecase.brief">{{onecase.brief[$index]}}</td>
+          <td>
+            <a ng-click="setModal($index)" ng-show="imgfiletype[$index]"><span class="glyphicon glyphicon-info-sign"></span></a>
+
+            <a ng-click="playAudio($index)" ng-show="audiofiletype[$index]"><span class="glyphicon glyphicon-info-sign"></span></a>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+
+  <div class="form-group col-md-12">
+    <label class="col-md-3 pull-left">Patient Score:</label>
+    <div class="col-md-9 btn-group"  data-toggle="buttons" >
+        <label type="radio" ng-click="setPatientScore(n)" ng-class="{'btn-success': patientscore==n}" class="btn btn-default" ng-repeat="n in [1,2,3,4,5] track by $index">{{n}}</label>
+    </div>
+  </div>
+  <div class="form-group col-md-12">
+    <label class="col-md-3 pull-left">Examiner Score:</label>
+    <div class="col-md-9 btn-group" data-toggle="buttons">
+        <button ng-click="setExaminerScore(n)" ng-class="{'btn-success': examinerscore==n}" class="btn btn-default" ng-repeat="n in [1,2,3,4,5] track by $index">{{n}}</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-8 pull-left formWrap">Comments:</label>
+    <div class="col-md-12 formWrap">          
+      <textarea rows="2" ng-model="commsfeedback[0]" class="form-control" id="comment" placeholder="Enter comments">
+      </textarea>
+      <textarea rows="2" ng-repeat="value in commsfeedback track by $index" ng-model="commsfeedback[$index+1]" class="form-control" id="comment" placeholder="Enter comments">
+      </textarea>
+    </div>
+  </div>
+</div>
+
+  {{onecase}}
+  &nbsp
+  {{peerSelected}}
+  {{currentUser}}
+<div class="text-center">
+  <p class="text-danger">{{errorMessage}}</p>
+</div>
+<div class="col-md-12 text-center">
+  <button class="btn btn-lg btn-default" ng-click="submit()" ng-disabled="!currentUser">Submit</button>
+  <p class="text-warning" ng-show="!currentUser"><a href='#/login'>Log in</a> or <a href="#/register">register</a> to mark!</p>
+</div>

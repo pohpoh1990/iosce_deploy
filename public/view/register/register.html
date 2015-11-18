@@ -1,0 +1,60 @@
+<div class="col-md-8 col-md-offset-2">
+  <h2>Registration</h2>
+  &nbsp
+  <form class="form-horizontal" role="form">
+    <div class="form-group">
+      <label class="control-label col-md-3">Full name:</label>
+      <div class="col-md-9">          
+        <input type="username" ng-model="user.username" class="form-control" id="username" placeholder="Enter full name">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-md-3">Email:</label>
+      <div class="col-md-9">
+        <input type="email" ng-model="user.email" class="form-control" id="email" placeholder="Enter @kcl.ac.uk or @doctors.org.uk email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-3">Password:</label>
+      <div class="col-md-9">          
+        <input type="password" ng-model="user.password" class="form-control" id="pwd" placeholder="Enter password">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-3">Retype Password:</label>
+      <div class="col-md-9">          
+        <input type="password" ng-model="user.password2" class="form-control" id="pwd" placeholder="Retype password">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-md-3">Occupation:</label>
+      <div class="col-md-9">          
+        <label class="radio-inline">
+          <input type="radio" name="optradio" ng-model="user.role"value="doctor" ng-click="doctor=true">Doctor
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio" ng-model="user.role" value="student" ng-click="doctor=false">Student
+        </label>
+      </div>
+    </div>
+    <div class="form-group" ng-show='!doctor'>
+      <label for="sel1" class="control-label col-md-3">University:</label>
+      <div class="col-md-9">
+        <select class="form-control" id="sel1" ng-model="user.uni">
+          <option value="kings">King's College London</option>
+          <option value="ucl">University College London</option>
+        </select>
+      </div>
+    </div>
+    <p class="text-danger col-md-offset-3 col-md-9">{{ message }}</p>
+
+    &nbsp
+    <div class="form-group">      
+      <div class="col-md-offset-3 col-md-9">
+        <button type="submit" class="btn btn-lg btn-default pull-right" ng-click="register()">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

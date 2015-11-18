@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="lib/bootstrap-3.3.5-dist/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="/view/index.css">
+	<link rel="stylesheet" href="/view/sidebar.css">
+	<link rel="stylesheet" href="/view/animate.css">
+
+	<title>iOSCE</title>
+</head>
+
+<body ng-app="OsceApp">
+	<div ng-controller="IndexController">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="logo pull-left" ng-class="{navbarfillwhite:!isActive('/profile'), 
+				navbarfillgray:isActive('/profile')}"></div>
+				<a href="#/"><img src="" class="pull-left"></img></a>
+				<div id="navbar" class="navbar-collapse collapse">
+			  	  <ul class="nav navbar-nav"> 
+			     	   	<li ng-class="{active: isActive('/')}">
+			     	   		<a href="#home">Home</a>
+			     	   	</li>
+			     	   	<li ng-class="{active: isActive('/createmarkscheme')}" ng-show="currentUser">
+			     	   		<a href="#createmarkscheme">Create mark scheme</a>
+			     	   	</li>
+			     	   	<li ng-class="{active: isActive('/profile')}" ng-show="currentUser">
+			     	   		<a href="#profile">Profile</a>
+			     	   	</li>
+			     	   	<li ng-class="{active: isActive('/feedback')}" ng-show="currentUser">
+			     	      	<a href="#feedback">Your thoughts</a>
+			     	   	</li>
+			     	   	<li ng-class="{active: isActive('/faq')}">
+			     	   		<a href="#faq">FAQ</a>
+			     	   	</li>
+			    	</ul>
+
+			    	<ul class="nav navbar-nav navbar-right">
+			    	    <li ng-show="!currentUser">
+			    	    	<a href="#login">Login</a>
+			    	    </li> 
+			    	    <li ng-show="!currentUser">
+			    	    	<a href="#register">Register</a>
+			    	    </li> 
+			    	    <li ng-show="currentUser">
+			    	    	<a href="#logout" ng-click="logout()">Logout</a>
+			    		</li>
+			    	</ul>
+				</div>
+			</div>
+		</nav> <!--end Nav bar -->
+		<div class="container contentdiv" ng-view></div>
+	</div>
+
+	<!-- Libraries -->
+	<script src="/lib/jquery-1.11.3.min.js"></script>
+	<script src="/lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular-animate.min.js"></script>
+	<script src="/lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
+
+	<!-- Adapter -->
+
+
+	<!-- Routing -->
+	<script src="js/app.js"></script>
+
+	<!-- Services -->
+	<script src="view/home/examfactory.js"></script>
+	<script src="view/caselist/caselistFactory.js"></script>
+	<script src="view/createcase/fileUpload.js"></script>
+	<script src="view/case/peerlistFactory.js"></script>
+	<script src="view/profile/resultFactory.js"></script>
+
+	<!-- Directives -->
+	<script src="js/sidebarDirective.js"></script>
+	<script src="view/createcase/fileModel.js"></script>
+
+	<!-- Controllers -->
+	<script src="js/index.js"></script>
+	<script src="view/home/home.js"></script>
+	<script src="view/login/login.js"></script>
+	<script src="view/register/register.js"></script>
+	<script src="view/createmarkscheme/createmarkscheme.js"></script>
+	<script src="view/caselist/caselist.js"></script>
+	<script src="view/createcase/createcase.js"></script>
+	<script src="view/case/case.js"></script>
+	<script src="view/profile/profile.js"></script>
+	<script src="view/template/RatingModalController.js"></script>
+	<script src="view/template/CaseModalController.js"></script>
+
+</body>
+
+
+</html>

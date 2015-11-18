@@ -1,0 +1,28 @@
+<div id="wrapper">
+
+<sidebar></sidebar>
+<!-- Page Content -->
+	<div id="page-content-wrapper">
+	    <div class="container-fluid">
+	        <div class="row">
+	            <div class="col-md-12">
+	                <a class="btn btn-default toggleHide" id="menu-toggle">Toggle Menu</a>
+                	<h1>Hello {{ currentUser.username }},</h1>
+
+                	<!-- Show if student -->
+                	<div id="results" ng-include="'/view/profile/profile_result.htm'"></div>
+
+                	<!-- Show if doctor or student -->
+                	<div id="scenarioedit" ng-include="'/view/profile/profile_casecreated.htm'"></div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+<script>
+	$("#menu-toggle").click(function(e) {
+	    e.preventDefault();
+	    $("#wrapper").toggleClass("toggled");
+	});
+</script>

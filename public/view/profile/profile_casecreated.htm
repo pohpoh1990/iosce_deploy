@@ -1,0 +1,19 @@
+<table class="table table-striped cases"> 
+	<thead>
+		<tr>
+			<th class="col-md-4">Cases you made</th>
+			<th class="col-md-4">Type</th>
+			<th class="col-md-2">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="case in casecreated">
+			<div >
+				<td>{{case.title}}</td>
+				<td>{{case.markscheme.title}}</td>
+				<td><button class="btn btn-warning" ng-click="deleteCase(case._id)">Delete</button></td>
+			</div>
+		</tr>
+	</tbody>
+
+</table>

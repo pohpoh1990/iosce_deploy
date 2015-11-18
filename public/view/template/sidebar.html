@@ -1,0 +1,18 @@
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <div class="sidebar-brand text-center">
+            <div class="letterCircle">{{firstLetter}}</div>
+            {{ currentUser.username }}'s iOsce <br>
+            {{ results.length }} <br>
+            <span>COMPLETED STATIONS<span> 
+        </div>
+        <div class="profilesearch">
+            <input ng-model="search.title" class="form-control" placeholder="Search examination">
+        </div>
+        <li ng-repeat="examination in examinations | filter:search">
+            <a href="/#/scenariolist/{{examination._id}}"><div class="listcase">{{examination.title}}</div></a>
+        </li>
+    </ul>
+</div>
+<!-- /#sidebar-wrapper -->

@@ -1,0 +1,33 @@
+<h1>Create case for: {{markscheme.title}}</h1>
+
+<form class="form-horizontal listcase">
+  <div class="form-group">
+    <label class="control-label col-md-3">Title: </label>
+    <div class="col-md-9">
+      <div class="col-md-6 formWrap">
+        <input class="form-control" ng-model="title" placeholder="Enter title">
+      </div>
+    </div>
+  </div>
+</form>
+
+<table class="table table-striped listcase">
+    <thead>
+      <tr>
+        <th>Markscheme</th>
+        <th>Case</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="ms in markscheme.markscheme track by $index">
+        <td>{{ms}}</td>
+        <td><textarea class="form-control" type="text" ng-model="brief[$index]"/></textarea><br>
+          <input class="formWrap small" type="file" file-model="myFile[{{$index}}]"/></td>
+      </tr>
+    </tbody>
+</table>
+
+{{myFile}}
+{{brief}}
+<p class="text-warning">{{errormessage}}</p>
+<button class="btn btn-large btn-default" ng-click="submit()">Submit</button>

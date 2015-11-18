@@ -1,0 +1,111 @@
+@font-face{
+  font-family: LiberationSans;
+  src: url(/lib/LiberationSans-Regular.ttf) format('truetype'),;
+}
+body {
+  padding-bottom: 20px;
+  font-family: LiberationSans;
+}
+
+td {
+  font-size: 18px;
+}
+
+.navbar {
+  background: rgba(255, 255, 255, 0.5);
+    margin-bottom: 20px;
+    margin-left: -15px;
+    font-size: 16px;
+}
+
+.logo {margin-right: 15px; height: 50px;}
+
+.title {
+  margin-bottom: 30px;
+}
+
+.listcase {
+  font-size: 18px;
+}
+
+.formWrap {
+	padding-left: 0px;
+	margin-bottom: 10px;
+}
+
+.marksheet > div {
+	background-color: transparent;
+}
+
+.tick {
+	background-color: #dff0d8;
+}
+
+.marksheet {
+	cursor: pointer;
+}
+
+td.marksheet:hover{
+	background-color: #f0f8ed;
+}
+.comingsoon {
+  text-decoration: italic;
+  color: red;
+  font-size: 12px
+}
+
+.rating {
+  font-size: 30px;
+}
+.heart {
+  color: red;
+}
+
+.panel-group {
+  margin-bottom: 0px;
+  border-bottom: 1px solid gray;
+  padding: 0px;
+}
+  .panel-group > div {
+    border: 1px gray solid;
+  }
+.panelClick {
+  cursor: pointer;
+  background-color: #E7F0F7;
+  font-size: 15px
+
+}
+.panelClick:hover {
+  background-color: #F3F8FB;
+}
+
+.cases > thead > tr > th{
+  padding-top: 50px;
+};
+
+.casebtn {
+  margin-top: 20px;
+  color: red;
+}
+
+.osceroomCircle {
+    border-radius: 5px;
+
+    width: 42px;
+    height: 42px;
+    padding: 13px;
+
+    border: 2px solid #666;
+    color: #666;
+    text-align: center;
+
+    font: 16px Arial, sans-serif;
+    margin: 20px 0px 20px 5px;
+    line-height: 0px
+}
+.osceroomCircle p{
+    margin-top: 3px;
+    margin-left: -13px;
+    font: 9px Arial, sans-serif;;
+    line-height: 30px
+}

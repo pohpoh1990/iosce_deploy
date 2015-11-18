@@ -1,0 +1,52 @@
+<div class="text-center">
+	<h1>{{markscheme.title}}: Select Case</h1>
+
+  <div class="col-md-2">
+      <button class="btn btn-default btn-sm" ng-click="back()">
+        <span class="glyphicon glyphicon-menu-left"></span>
+      </button>
+  </div>
+  <div class="col-md-8">
+    <input ng-model="search.cases.title" class="form-control" placeholder="Search">
+  </div>
+</div>
+
+<table class="table table-striped listcase cases">
+    <thead>
+      <tr>
+        <th>Cases</th>
+        <th>Rating</th>
+        <th>Difficulty</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+        	<a href="/#/markscheme/{{markschemeid}}/case/0">
+        		<div>Empty case</div>
+        	</a>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr ng-repeat="case in cases | filter:search.cases">
+        <td class="col-md-8">
+          <a href="/#/markscheme/{{markschemeid}}/case/{{case._id}}">
+            <div>{{case.title}}</div>
+          </a>
+        </td>
+        <td class="col-md-2"><uib-rating class="heart" ng-model="case.rating" max="5" readonly="true" state-on="'glyphicon-heart'" state-off="'glyphicon-heart-empty'" aria-labelledby="glyphicon-heart"></uib-rating></td>
+        <td class="col-md-2"><uib-rating ng-model="case.difficulty" readonly="true" max="5"aria-labelledby="default-rating"></uib-rating></td>
+      </tr>
+    </tbody>
+  </table>
+<div>
+
+</div>
+
+<div class="text-center listcase title">
+	Haven't found what you're searching for? <br>
+</div>
+<div class="text-center">
+	<a href="/#/createcase/{{markschemeid}}"><button class="btn btn-lg btn-default">Create one</button></a>
+</div>

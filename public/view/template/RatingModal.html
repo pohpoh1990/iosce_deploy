@@ -1,0 +1,18 @@
+<!-- Rating Modal -->
+<div>
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title rating">Help us improve!</h4>
+    </div>
+    <div class="modal-body rating">
+      <p>Rating: <uib-rating class="heart" ng-model="rating" max="5" on-leave="overStar = null"  state-on="'glyphicon-heart'" state-off="'glyphicon-heart-empty'" aria-labelledby="glyphicon-heart"></uib-rating></p>
+      <p>Difficulty:  <uib-rating ng-model="difficulty" max="5" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating></p>
+    </div> {{rating}}, {{difficulty}}
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" ng-click="submitrating()" data-dismiss="modal">Submit rating</button>
+    </div>
+  </div>
+
+</div>

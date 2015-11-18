@@ -1,0 +1,35 @@
+<table class="table table-striped"> 
+	<thead>
+		<tr>
+			<th class="col-md-12">Results</th>
+		</tr>
+	</thead>
+</table>
+<div class="panel-group col-md-12" ng-repeat="result in results | orderBy:'-date'">
+	<div class="panel-heading panelClick listpanel" ng-click="show($index)">
+		<em>{{result.date | date:'mediumDate'}}.</em>
+		<span class="vignette">{{result.markscheme.title}}: </span><em>{{result.casetitle}}</em>
+		<p><em class="text-success pull-right">Patient score: {{result.patientscore}}/5 &nbsp &nbsp Examiner score: {{result.examinerscore}}/5</em></p>
+	</div>
+
+	<div class="list-group-item panelAnimate" ng-show="showresult[$index]">
+		<p><strong>Feedback:</strong></p>
+		<div>
+			<ul class="list-group">	
+				<li class="list-group-item">{{result.commsfeedback[0]}}</li>
+			</ul>
+		</div>	
+		<p><strong>Marks:</strong></p>
+		<div>
+			<ul class="list-group">	
+				<li class="list-group-item" ng-class="{'list-group-item-success':result.result[$index]}" ng-repeat="n in result.markscheme.markscheme">{{n}}</li>
+			</ul>
+		</div>	
+	</div>
+</div>
+
+<style>
+	.vignette {
+		color:blue;
+	}
+</style>
