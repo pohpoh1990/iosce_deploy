@@ -123,7 +123,7 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 			var warning = $scope.warning;
 			var duration = $scope.duration;
 			var audioStartStation = new Audio('/media/beginstation.mp3');
-
+			audioStartStation.play();
 			$scope.timerstarted = true;
 			countdown = {
 				minute: duration, 
@@ -132,7 +132,7 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 			startcountdown = setInterval(function(){
 				countdown = myTimer(countdown, duration, warning, audioStartStation);
  				$scope.timer = checkTime(countdown);
- 				audioStartStation.play();
+
 				$scope.$apply();
 			}, 1000)
 
