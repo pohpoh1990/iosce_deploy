@@ -1,5 +1,5 @@
-app.controller('CreatemarkschemeController', ["$scope", "$http",
-function($scope, $http){
+app.controller('CreatemarkschemeController', ["$scope", "$http", "$location",
+function($scope, $http, $location){
 	$scope.examination = {
 		title: '',
 		markscheme: ['Wash hands', 
@@ -28,6 +28,7 @@ function($scope, $http){
 		$http.post('/examination', $scope.examination)
 			.success(function(response){
 				console.log(response);
+				$location.url('/');
 			})
 	}
 

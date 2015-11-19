@@ -3,7 +3,7 @@ var ExamCase = require('./models/examcases.js');
 var OsceUser = require('./models/osceusers.js');
 
 module.exports = function(app, passport){
-	app.post('/examcases/:id', function(req, res){
+	app.post('/examcases/:id', auth, function(req, res){
 		console.log(req.body);
 		var newExamCase = new ExamCase(req.body);
 		newExamCase.markschemeid = req.params.id;
@@ -29,7 +29,7 @@ module.exports = function(app, passport){
 	});
 	var async = require('async');
 
-	app.post('/upload', upload.array('files'), function(req, res){
+	app.post('/upload', auth, upload.array('files'), function(req, res){
 		var responseFile = [];
 		console.log(req.body);
 		console.log(req.files);
@@ -56,7 +56,7 @@ module.exports = function(app, passport){
 		};
 	})
 
-	app.get('/upload/:id', function(req, res){
+	app.get('/upload/:id', auth, function(req, res){
 		gfs.findOne({_id: req.params.id}, function(err, file){
 			if (err) {
 				return res.status(400).send(err)
@@ -97,7 +97,7 @@ module.exports = function(app, passport){
 		})
 	})
 
-	app.post('/caserating/:id', function(req, res){
+	app.post('/caserating/:id', auth, function(req, res){
 		OsceUser.findByIdAndUpdate(req.body.myid, {
 			$push: {ratedcase: req.params.id}
 		}, function(err){
@@ -122,7 +122,7 @@ module.exports = function(app, passport){
 		)
 	})
 
-	app.get('/casecreated/:id', function(req, res){
+	app.get('/casecreated/:id', auth, function(req, res){
 		var id = req.params.id;
 		Result.find({author:id}, function(err, results){
 			res.json(results);
@@ -130,7 +130,7 @@ module.exports = function(app, passport){
 		})
 	});
 
-	app.get('/all/casecreated', function(req, res){
+	app.get('/all/casecreated', auth, function(req, res){
 		var id = req.params.id;
 		ExamCase.find({}, function(err, casecreated){
 			res.json(casecreated);
@@ -138,7 +138,7 @@ module.exports = function(app, passport){
 		})
 	});
 
-	app.get('/deletecasecreated/:caseid/:myid', function(req, res){
+	app.get('/deletecasecreated/:caseid/:myid', auth, function(req, res){
 		var caseid = req.params.caseid;
 		var myid = req.params.myid;
 		ExamCase.findOne({_id: caseid}, function(err, casecreated){
@@ -160,3 +160,10 @@ module.exports = function(app, passport){
 		});
 	})
 }
+
+function auth(req, res, next){
+	if (!req.isAuthenticated())
+		res.send(401);
+	else
+		next();
+};

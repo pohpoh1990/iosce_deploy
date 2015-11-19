@@ -122,19 +122,23 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 		if ($scope.warning && $scope.duration){
 			var warning = $scope.warning;
 			var duration = $scope.duration;
+			var audioStartStation = new Audio('/media/beginstation.mp3');
+			var audioWarning = new Audio('/media/2minwarning.mp3');
+			var audioEnd = new Audio('/media/endwarning.mp3');
+
 			$scope.timerstarted = true;
 			countdown = {
 				minute: duration, 
 				second: 0
 			};
 			startcountdown = setInterval(function(){
-				countdown = myTimer(countdown, duration, warning);
+				countdown = myTimer(countdown, duration, warning, audioWarning, audioEnd);
  				$scope.timer = checkTime(countdown);
 				$scope.$apply();
 			}, 1000)
 
 			$scope.timingmessage = "Begin "+duration+"-minute-station";
-			var audioStartStation = new Audio('/media/beginstation.mp3');
+
 			audioStartStation.play();
 
 		};
@@ -180,7 +184,7 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 		})
 	}
 
-	var myTimer = function(varcountdown, duration, warning){
+	var myTimer = function(varcountdown, duration, warning, audioWarning, audioEnd){
 
 		if (!varcountdown){
 			varcountdown.minute = duration.minute-1;
@@ -191,13 +195,11 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 			if (minute==0 && second ==0){
 				$scope.timingmessage = "End of station";
 				$scope.startStation = false;
-				var audioEnd = new Audio('/media/endwarning.mp3');
 				audioEnd.play();
 				clearInterval(startcountdown);
 			} else if (varcountdown.minute == warning && varcountdown.second==0) {
 				$scope.timingmessage = warning+" minute remaining";
-				var audioEnd = new Audio('/media/2minwarning.mp3');
-				audioEnd.play();
+				audioWarning.play();
 				varcountdown.minute = varcountdown.minute-1;
 				varcountdown.second = 59;
 			} else if (second == 0){

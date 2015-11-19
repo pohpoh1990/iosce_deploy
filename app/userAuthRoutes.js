@@ -45,7 +45,7 @@ module.exports = function(app, passport, transporter){
 		res.redirect('/');
 	});
 
-	app.delete('/profile/:id', function(req, res){
+	app.delete('/profile/:id', auth, function(req, res){
 		var id = req.params.id;
 		Results.remove({studentid:id}, function(err, result){
 			if (err) return err;
@@ -57,7 +57,7 @@ module.exports = function(app, passport, transporter){
 		});
 	});
 
-	app.post('/profile/:id', function(req, res){
+	app.post('/profile/:id', auth, function(req, res){
 		var id = req.params.id;
 		var update = req.body;
 		console.log(update);
@@ -143,3 +143,9 @@ module.exports = function(app, passport, transporter){
 
 	//Email verification ends
 }
+function auth(req, res, next){
+	if (!req.isAuthenticated())
+		res.send(401);
+	else
+		next();
+};

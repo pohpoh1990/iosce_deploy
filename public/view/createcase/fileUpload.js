@@ -36,7 +36,7 @@ function ($http, $q, $location) {
         })
         .success(function(response){
             console.log(response);
-            $location.url('profile');
+            $location.url('/markscheme/'+markschemeid);
         })
     }
 }]);

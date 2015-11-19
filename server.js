@@ -1,4 +1,4 @@
-var port = Number(process.env.PORT || 500);
+var port = Number(process.env.PORT || 3000);
 var express = require('express');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
@@ -62,7 +62,7 @@ app.get('/all/examcases', function(req, res){
 	});
 })
 
-app.post('/examination', function(req, res){
+app.post('/examination', auth, function(req, res){
 	console.log(req.body);
 	var newExamination = new Examination(req.body);
 	newExamination.rating = 0;
@@ -100,7 +100,7 @@ app.get('/markscheme/:id', function(req, res){
 	});
 })
 
-app.get('/allpeers/', function(req, res){
+app.get('/allpeers/', auth, function(req, res){
 	OsceUser.find({}, 'username email _id', function(err, users){
 		if (err) {console.log(err)}
 		if(!err) {
@@ -110,7 +110,7 @@ app.get('/allpeers/', function(req, res){
 	})
 })
 
-app.post('/postresult/', function(req, res){
+app.post('/postresult/', auth, function(req, res){
 	var newResult = new Result(req.body);
 	OsceUser.findByIdAndUpdate(newResult.studentid, {$push:{caseDone: newResult.caseid}}, 
 		function(){
@@ -134,7 +134,7 @@ app.get('/all/result', function(req, res){
 	})
 })
 
-app.get('/result/:id', function(req, res){
+app.get('/result/:id', auth, function(req, res){
 	var id = req.params.id;
 	Result.find({studentid:id}, function(err, results){
 		res.json(results);
@@ -142,7 +142,7 @@ app.get('/result/:id', function(req, res){
 	})
 });
 
-var auth = function(req, res, next){
+function auth(req, res, next){
 	if (!req.isAuthenticated())
 		res.send(401);
 	else

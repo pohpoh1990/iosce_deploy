@@ -44,7 +44,7 @@ app.config(function($routeProvider, $locationProvider){
 			logincheck: checkLoggedin
 		}
 	})
-	.when('/scenariolist/:id', {
+	.when('/markscheme/:id', {
 		templateUrl: '/view/caselist/caselist.html',
 		controller: 'CaselistController',
 		resolve: {
