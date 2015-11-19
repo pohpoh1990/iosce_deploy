@@ -134,12 +134,13 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 			startcountdown = setInterval(function(){
 				countdown = myTimer(countdown, duration, warning, audioWarning, audioEnd);
  				$scope.timer = checkTime(countdown);
+ 				audioStartStation.play();
 				$scope.$apply();
 			}, 1000)
 
 			$scope.timingmessage = "Begin "+duration+"-minute-station";
 
-			audioStartStation.play();
+
 
 		};
 	};
