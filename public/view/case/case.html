@@ -10,8 +10,12 @@
     <label class="control-label col-md-3">Who are you marking? </label>
     <div class="col-md-9">
       <div class="col-md-5 formWrap">
-        <input class="form-control" ng-model="peerSelected" bs-options="name as name.email for name in peers" bs-typeahead placeholder="Enter email / name" ng-disabled="!currentUser">
-        <p class="text-warning small" ng-show="!currentUser">
+        <input type="text" class="form-control" ng-focus="typing=true" ng-blur="typing=false"ng-model="peerSelected" placeholder="Enter email / name" uib-typeahead="name as name.username +' ( '+name.email+' ) ' for name in peers | filter:$viewValue | limitTo:5" typeahead-loading="loadingPeers" typeahead-no-results="noResults"  typeahead-template-url="/view/template/typeahead.html" ng-disabled="!currentUser">
+                <div class="custom-popup-wrapper" ng-show="noResults && typing" style="display: block;">
+                  <ul class="dropdown-menu noresult" role="listbox">
+                      <li><a>Your friend is not registered!</a></li>
+                  </ul>
+                </div>
           Please <a href='#/login'>log in</a> or <a href="#/register">register</a> to search user!
         </p>
       </div>
@@ -43,9 +47,9 @@
   <table class="table table-striped">
       <thead>
         <tr>
-          <th class="col-md-6">Markscheme <span class="comingsoon" ng-show="!marks">Click to start marking!</span</th>
-          <th class="col-md-3" ng-show="onecase.brief">Brief</th>
-          <th class="col-md-3" ng-show="onecase.brief">Signs</th>
+          <th class="col-md-6 col-xs-5">Markscheme <span class="comingsoon" ng-show="!marks">Click to start marking!</span</th>
+          <th class="col-md-3 col-xs-5" ng-show="onecase.brief">Brief</th>
+          <th class="col-md-3 col-xs-2" ng-show="onecase.brief">Signs</th>
         </tr>
       </thead>
       <tbody>

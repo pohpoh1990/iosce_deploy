@@ -1,12 +1,12 @@
 <div class="text-center">
 	<h1>{{markscheme.title}}: Select Case</h1>
 
-  <div class="col-md-2">
+  <div class="col-md-2 col-xs-2">
       <button class="btn btn-default btn-sm" ng-click="back()">
         <span class="glyphicon glyphicon-menu-left"></span>
       </button>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-8 col-xs-8">
     <input ng-model="search.cases.title" class="form-control" placeholder="Search">
   </div>
 </div>
@@ -14,9 +14,9 @@
 <table class="table table-striped listcase cases">
     <thead>
       <tr>
-        <th>Cases</th>
-        <th>Rating</th>
-        <th>Difficulty</th>
+        <th class="col-md-6 col-xs-6">Cases</th>
+        <th class="col-md-3 col-xs-3">Rating</th>
+        <th class="col-md-3 col-xs-3">Difficulty</th>
       </tr>
     </thead>
     <tbody>

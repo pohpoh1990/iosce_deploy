@@ -109,3 +109,18 @@ td.marksheet:hover{
     font: 9px Arial, sans-serif;;
     line-height: 30px
 }
+
+.custom-popup-wrapper {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+}
+
+.custom-popup-wrapper > .dropdown-menu {
+  position: static;
+  float: none;
+  display: block;
+  min-width: 160px;
+}
