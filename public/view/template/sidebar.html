@@ -11,7 +11,7 @@
             <input ng-model="search.title" class="form-control" placeholder="Search examination">
         </div>
         <li ng-repeat="examination in examinations | filter:search">
-            <a href="/#/scenariolist/{{examination._id}}"><div class="listcase">{{examination.title}}</div></a>
+            <a href="/#/markscheme/{{examination._id}}"><div class="listcase">{{examination.title}}</div></a>
         </li>
     </ul>
 </div>
