@@ -20,10 +20,11 @@ function ($http, $q, $location) {
 
     this.postDB = function(filename, position, markschemeid, markscheme, title, brief, author){
         var j = 0;
+        var filenameArray = filename.map(function(e) { return e.filename; });
         for (var i=0; i<position.length; i++){
             if (position[i]){
-                position[i] = filename[j];
-                j = j+1;
+                var idx = filenameArray.indexOf(position[i]);
+                position[i] = filename[idx];
             }
         };
 

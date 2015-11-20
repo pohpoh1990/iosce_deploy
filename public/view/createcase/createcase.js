@@ -20,7 +20,7 @@ function($scope, $http, CaselistFactory, $routeParams, fileUpload, $routeScope){
 			var position = [];
 			for (var i=0; i<file.length; i++){
 				if (file[i]){
-					position[i] = true
+					position[i] = file[i].name;
 				} else {
 					position[i] = false
 				}
@@ -31,17 +31,11 @@ function($scope, $http, CaselistFactory, $routeParams, fileUpload, $routeScope){
 
 			var uploadUrl = '/upload';
 			fileUpload.uploadFileToUrl(file, uploadUrl).then(
+				$scope.errormessage = "Loading...";
 				function(filename){
-					// Compare filename and file before postDB
-					for (var i=0; i<file.length; i++){
-						if (file[i].filename){
-							var pos = filename.map(function(e) { return e.filename; }).indexOf(file[i].filename);
-							file[i] = filename[pos];
-						}
-					};
 					fileUpload.postDB(filename, position, $routeParams.id, $scope.markscheme, $scope.title, $scope.brief, $routeScope.currentUser._id);
 				}
-			);		
+			);	
 		}
 	}
 
