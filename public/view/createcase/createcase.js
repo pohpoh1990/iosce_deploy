@@ -30,8 +30,8 @@ function($scope, $http, CaselistFactory, $routeParams, fileUpload, $routeScope){
 			console.dir(file);
 
 			var uploadUrl = '/upload';
+			$scope.errormessage = "Loading..."
 			fileUpload.uploadFileToUrl(file, uploadUrl).then(
-				$scope.errormessage = "Loading...";
 				function(filename){
 					fileUpload.postDB(filename, position, $routeParams.id, $scope.markscheme, $scope.title, $scope.brief, $routeScope.currentUser._id);
 				}
