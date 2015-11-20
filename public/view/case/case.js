@@ -137,9 +137,6 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 			}, 1000)
 
 			$scope.timingmessage = "Begin "+duration+"-minute-station";
-
-
-
 		};
 	};
 

@@ -56,7 +56,7 @@ module.exports = function(app, passport){
 		};
 	})
 
-	app.get('/upload/:id', auth, function(req, res){
+	app.get('/upload/:id', function(req, res){
 		gfs.findOne({_id: req.params.id}, function(err, file){
 			if (err) {
 				return res.status(400).send(err)
