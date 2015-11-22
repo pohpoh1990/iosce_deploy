@@ -9,10 +9,8 @@ app.controller("RegisterController", ["$scope","$rootScope", "$http", "$location
 				isUndefinedOrNull($scope.user.password)||
 				isUndefinedOrNull($scope.user.password2) || 
 				isUndefinedOrNull($scope.user.role) ||
-				isUndefinedOrNull($scope.user.uni)) {
+				($scope.user.role == 'student' && isUndefinedOrNull($scope.user.uni))) {
 					$scope.message = "Please fill in all fields."
-			} else if (isValidMail($scope.user.email)==false){
-				$scope.message = "Please only use your university email address."
 			} else if ($scope.user.password != $scope.user.password2){
 				$scope.message = "Please check retyped password."
 			} else {

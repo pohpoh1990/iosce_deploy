@@ -5,9 +5,6 @@ app.config(function($routeProvider, $locationProvider){
 	.when('/', {
 		templateUrl: 'view/home/home.html',
 		controller: 'HomeController',
-		resolve: {
-			logincheck: checkLoggedin2
-		}
 	})
 	.when('/register', {
 		templateUrl: '/view/register/register.html',

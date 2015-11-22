@@ -10,13 +10,8 @@
     <label class="control-label col-md-3">Who are you marking? </label>
     <div class="col-md-9">
       <div class="col-md-5 formWrap">
-        <input type="text" class="form-control" ng-focus="typing=true" ng-blur="typing=false"ng-model="peerSelected" placeholder="Enter email / name" uib-typeahead="name as name.username +' ( '+name.email+' ) ' for name in peers | filter:$viewValue | limitTo:5" typeahead-loading="loadingPeers" typeahead-no-results="noResults"  typeahead-template-url="/view/template/typeahead.html" ng-disabled="!currentUser">
-                <div class="custom-popup-wrapper" ng-show="noResults && typing" style="display: block;">
-                  <ul class="dropdown-menu noresult" role="listbox">
-                      <li><a>Your friend is not registered!</a></li>
-                  </ul>
-                </div>
-          Please <a href='#/login'>log in</a> or <a href="#/register">register</a> to search user!
+        <input type="text" class="form-control" ng-model="currentUser.username" ng-disabled="!currentUser" readonly>
+          <span ng-show="!currentUser">Please <a href='#/login'>log in</a> or <a href="#/register">register</a> to search user!</span>
         </p>
       </div>
     </div>
@@ -59,9 +54,10 @@
           </td>
           <td ng-show="onecase.brief">{{onecase.brief[$index]}}</td>
           <td>
-            <a ng-click="setModal($index)" ng-show="imgfiletype[$index]"><span class="glyphicon glyphicon-info-sign"></span></a>
+            <button class="btn btn-info btn-sm" ng-click="setModal($index)" ng-show="imgfiletype[$index]">Show</button>
 
-            <a ng-click="playAudio($index)" ng-show="audiofiletype[$index]"><span class="glyphicon glyphicon-info-sign"></span></a>
+            <button class="btn btn-info btn-sm" ng-click="playAudio($index)" ng-show="audiofiletype[$index]">Play</button>
+            <button class="btn btn-info btn-sm" ng-click="pauseAudio()" ng-show="audiofiletype[$index] && audioPlaying">Pause</button>
           </td>
         </tr>
       </tbody>
