@@ -24,7 +24,7 @@ app.controller("ProfileController", ["$scope", "$rootScope", "$http", "$location
 		};
 
 		function getCases(){
-			$rootScope.currentUser.role = ["student", "admin"]
+			//$rootScope.currentUser.role = ["student", "admin"]
 			if ($rootScope.currentUser){
 				CaselistFactory.getCaseCreated($rootScope.currentUser._id).then(function(casecreated){
 					if(Array.isArray(casecreated)){
