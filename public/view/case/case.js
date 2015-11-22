@@ -96,8 +96,6 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 		}
 		if(!$rootScope.currentUser){
 			//Popup log in
-		} else if (!$scope.peerSelected){
-			$scope.errorMessage = "Please fill in your peer name / email."
 		} else {
 			var myid = $rootScope.currentUser._id;
 			var caseid = $routeParams.caseid;
@@ -115,7 +113,7 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 				commsfeedback: $scope.commsfeedback
 			};
 
-			PeerlistFactory.sendresult(result, peerid, myid);
+			PeerlistFactory.sendresult(result, myid);
 		}
 	}
 

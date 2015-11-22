@@ -33,6 +33,10 @@ td {
 	margin-bottom: 10px;
 }
 
+.feedbackText {
+  margin-bottom: 30px;
+}
+
 .marksheet > div {
 	background-color: transparent;
 }

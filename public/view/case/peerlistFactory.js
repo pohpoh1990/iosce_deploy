@@ -12,7 +12,7 @@ function($http, $q, $location){
 				return q.promise
 			},
 
-			sendresult: function(result, peerid, myid){
+			sendresult: function(result, myid){
 				$http.post('/postresult/', result)
 					.success(function(response){
 						console.log(response)

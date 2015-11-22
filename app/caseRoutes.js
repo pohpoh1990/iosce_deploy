@@ -124,9 +124,9 @@ module.exports = function(app, passport){
 
 	app.get('/casecreated/:id', auth, function(req, res){
 		var id = req.params.id;
-		Result.find({author:id}, function(err, results){
-			res.json(results);
-			console.log("Results sent");
+		ExamCase.find({author:id}, function(err, casecreated){
+			res.json(casecreated);
+			console.log("Casecreated sent");
 		})
 	});
 

@@ -55,6 +55,13 @@ app.config(function($routeProvider, $locationProvider){
 			logincheck: checkLoggedin
 		}
 	})
+	.when('/feedback/', {
+		templateUrl: '/view/feedback/feedback.html',
+		controller: 'FeedbackController',
+		resolve: {
+			logincheck: checkLoggedin
+		}
+	})
 	.otherwise({
 		redirectTo: '/'
 	})

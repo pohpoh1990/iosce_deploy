@@ -9,7 +9,7 @@
     <div class="modal-body rating">
       <p>Rating: <uib-rating class="heart" ng-model="rating" max="5" on-leave="overStar = null"  state-on="'glyphicon-heart'" state-off="'glyphicon-heart-empty'" aria-labelledby="glyphicon-heart"></uib-rating></p>
       <p>Difficulty:  <uib-rating ng-model="difficulty" max="5" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating></p>
-    </div> {{rating}}, {{difficulty}}
+    </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" ng-click="submitrating()" data-dismiss="modal">Submit rating</button>
     </div>

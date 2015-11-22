@@ -3,8 +3,8 @@ app.controller("ProfileController", ["$scope", "$rootScope", "$http", "$location
 
 		$scope.showresult = [];
 
-		var intervalResults = setInterval(getResult, 10);
-		var intervalCases = setInterval(getCases, 10);
+		var intervalResults = setInterval(getResult, 200);
+		var intervalCases = setInterval(getCases, 200);
 
 		function getResult(){
 			if ($rootScope.currentUser){

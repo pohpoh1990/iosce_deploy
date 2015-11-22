@@ -35,8 +35,8 @@
             <div>{{case.title}}</div>
           </a>
         </td>
-        <td><uib-rating class="heart" ng-model="case.rating" max="5" readonly="true" state-on="'glyphicon-heart'" state-off="'glyphicon-heart-empty'" aria-labelledby="glyphicon-heart"></uib-rating></td>
-        <td><uib-rating ng-model="case.difficulty" readonly="true" max="5"aria-labelledby="default-rating"></uib-rating></td>
+        <td><uib-rating class="heart" ng-model="case.rating" ng-show="case.rating>0" max="{{case.rating}}" readonly="true" state-on="'glyphicon-heart'" state-off="'glyphicon-heart-empty'" aria-labelledby="glyphicon-heart"></uib-rating></td>
+        <td><uib-rating ng-model="case.difficulty" readonly="true" ng-show="case.difficulty>0" max="{{case.difficulty}}" aria-labelledby="default-rating"></uib-rating></td>
       </tr>
     </tbody>
   </table>
