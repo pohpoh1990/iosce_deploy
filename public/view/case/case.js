@@ -100,11 +100,9 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 			$scope.errorMessage = "Please fill in your peer name / email."
 		} else {
 			var myid = $rootScope.currentUser._id;
-			var peerid = $scope.peerSelected._id;
 			var caseid = $routeParams.caseid;
 			var result = {
-				studentid: peerid,
-				markerid: myid,
+				studentid: myid,
 				caseid: caseid,
 				markscheme: {
 					title: $scope.markscheme.title, 

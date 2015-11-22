@@ -142,6 +142,26 @@ app.get('/result/:id', auth, function(req, res){
 	})
 });
 
+app.post('/feedback', function(req,res){
+	var email = req.body.email;
+	var feedback = req.body.feedback;
+	mailOptions = {
+		from: 'osce247@gmail.com',
+		to: 'osce247@gmail.com',
+		subject: "Feedback from: "+email,
+		html: feedback
+	}
+	console.log(mailOptions);
+	transporter.sendMail(mailOptions, function(error, response){
+		if (error){
+			console.log("Error in sending feedback email: "+error);
+		} else {
+			console.log("Message sent:"+response.message);
+			res.json("Feedback sent!")
+		}
+	});
+})
+
 function auth(req, res, next){
 	if (!req.isAuthenticated())
 		res.send(401);
