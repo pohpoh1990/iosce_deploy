@@ -100,8 +100,8 @@ app.get('/markscheme/:id', function(req, res){
 	});
 })
 
-app.get('/allpeers/', auth, function(req, res){
-	OsceUser.find({}, 'username email _id', function(err, users){
+app.get('/allpeers/', function(req, res){
+	OsceUser.find({}, 'username _id', function(err, users){
 		if (err) {console.log(err)}
 		if(!err) {
 			res.json(users);

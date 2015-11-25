@@ -10,11 +10,18 @@
     <label class="control-label col-md-3">Who are you marking? </label>
     <div class="col-md-9">
       <div class="col-md-5 formWrap">
-        <input type="text" class="form-control" ng-model="currentUser.username" ng-disabled="!currentUser" readonly>
+        <input type="text" class="form-control" ng-focus="typing=true" ng-blur="typing=false" ng-model="peerSelected" placeholder="Enter peer username" uib-typeahead="name as name.username for name in peers | filter:$viewValue | limitTo:5" typeahead-loading="loadingPeers" typeahead-no-results="noResults"  typeahead-template-url="/view/template/typeahead.html" ng-disabled="!currentUser">
+            <div class="custom-popup-wrapper" ng-show="noResults && typing" style="display: block;">
+              <ul class="dropdown-menu noresult" role="listbox">
+                  <li><a>Your friend is not registered!</a></li>
+              </ul>
+            </div>
           <span ng-show="!currentUser">Please <a href='#/login'>log in</a> or <a href="#/register">register</a> to search user!</span>
         </p>
       </div>
     </div>
+
+
     <label class="control-label col-md-3" ng-hide="timerstarted">Station duration</label>
     <div class="col-md-9" ng-hide="timerstarted">
       <div class="col-md-1 formWrap" >

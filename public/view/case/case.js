@@ -40,11 +40,25 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 		)
 	}
 
-	/*PeerlistFactory.getPeers().then(
-		function(peers){
-			$scope.peers = peers;
+	var iterNum = 0;
+	var peerInterval = setInterval(getPeerLoginCheck, 200)
+
+	function getPeerLoginCheck(){
+		iterNum ++;
+		if ($rootScope.currentUser){
+			PeerlistFactory.getPeers().then(
+				function(peers){
+					$scope.peers = peers;
+				}
+			);
+			clearInterval(peerInterval);
+		} else if (iterNum >10){
+			console.log("Please log in to search peers!");
+			clearInterval(peerInterval);
 		}
-	);*/
+	}
+
+
 
 	$scope.playAudio = function(index){
 		filepath = "upload/"+$scope.onecase.file[index]._id;
@@ -89,24 +103,34 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 	}
 
 	$scope.submit = function(){
+		$scope.errorMessage = null;
 		console.log($rootScope.currentUser.caseDone.indexOf($routeParams.caseid))
-		if ($rootScope.currentUser.caseDone.indexOf($routeParams.caseid)<0){
+		if ($scope.onecase && $rootScope.currentUser.caseDone.indexOf($routeParams.caseid)<0){
 			//Show rating modal
 			openRatingModal();
-		}
+		};
+
+		if ($scope.onecase){
+			onecaseTitle = $scope.onecase.title;
+		} else {onecaseTitle = "Empty Case"};
+
 		if(!$rootScope.currentUser){
 			//Popup log in
+		} else if (!$scope.peerSelected) {
+			$scope.errorMessage = "Please tell us who you are marking!"
 		} else {
 			var myid = $rootScope.currentUser._id;
 			var caseid = $routeParams.caseid;
+			var peerid = $scope.peerSelected._id
 			var result = {
-				studentid: myid,
+				studentid: peerid,
+				markerid: myid,
 				caseid: caseid,
 				markscheme: {
 					title: $scope.markscheme.title, 
 					markscheme: $scope.markscheme.markscheme
 				},
-				casetitle: $scope.onecase.title,
+				casetitle: onecaseTitle,
 				result: $scope.marks,
 				patientscore: $scope.patientscore,
 				examinerscore: $scope.examinerscore,

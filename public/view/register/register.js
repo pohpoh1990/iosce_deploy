@@ -1,9 +1,31 @@
-app.controller("RegisterController", ["$scope","$rootScope", "$http", "$location",
-	function($scope, $rootScope, $http, $location){
+app.controller("RegisterController", ["$scope", "$http", "$location", "PeerlistFactory",
+	function($scope, $http, $location, PeerlistFactory){
+
+		var usernames = [];
+
+		PeerlistFactory.getPeers().then(function(peers){
+			for (var i=0;i<peers.length;i++){
+				var name = peers[i].username.toLowerCase();
+				usernames.push(name);
+			};
+			console.log(usernames);
+		})
+
+		$scope.checkusername = function(){
+			$scope.checkusernamesuccess = null;
+			$scope.checkusernameerror = null;
+			var newName = $scope.user.username.toLowerCase();
+			if (usernames.indexOf($scope.user.username)>-1){
+				$scope.checkusernamesuccess = "This username has been used. Please use another!"
+			} else {
+				$scope.checkusernameerror = "Username available!"
+			}
+		}
 		
 		$scope.register = function(){
 			$scope.message = null;
 			if (isUndefinedOrNull($scope.user)||
+				isUndefinedOrNull($scope.user.fullname) || 
 				isUndefinedOrNull($scope.user.username) || 
 				isUndefinedOrNull($scope.user.email) ||
 				isUndefinedOrNull($scope.user.password)||
@@ -13,12 +35,16 @@ app.controller("RegisterController", ["$scope","$rootScope", "$http", "$location
 					$scope.message = "Please fill in all fields."
 			} else if ($scope.user.password != $scope.user.password2){
 				$scope.message = "Please check retyped password."
+			} else if (!checkusernamesuccess){
+				$scope.message = "Please check the availability of your username!"
 			} else {
 			console.log($scope.user);
 			$http.post('/register', $scope.user)
 				.success(function(response){
 					console.log(response);
 					if (response == "This email has been used. Please use another!"){
+						$scope.message = response;
+					} else if (response == "This username has been used. Please use another!"){
 						$scope.message = response;
 					} else {
 						$location.url('/checkemail');

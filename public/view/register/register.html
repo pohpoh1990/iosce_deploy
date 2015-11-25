@@ -3,34 +3,45 @@
   &nbsp
   <form class="form-horizontal" role="form">
     <div class="form-group">
-      <label class="control-label col-md-3">Full name:</label>
-      <div class="col-md-9">          
+      <label class="control-label col-md-3">Username:</label>
+      <div class="col-md-7">          
         <input type="username" ng-model="user.username" class="form-control" id="username" placeholder="Enter full name">
+      </div>
+      <div class="col-md-2">          
+        <button class="btn btn-sm btn-info" ng-click="checkusername()">Check availability</button>
+      </div>
+    </div>
+    <p class="text-danger col-md-offset-3 col-md-7" ng-show="checkusernamesuccess">{{ checkusernamesuccess }}</p>
+    <p class="text-success col-md-offset-3 col-md-7" ng-show="checkusernameerror">{{ checkusernameerror }}</p>
+    <div class="form-group">
+      <label class="control-label col-md-3">Full name:</label>
+      <div class="col-md-7">          
+        <input type="username" ng-model="user.fullname" class="form-control" id="username" placeholder="Enter full name">
       </div>
     </div>
 
     <div class="form-group">
       <label class="control-label col-md-3">Email:</label>
-      <div class="col-md-9">
+      <div class="col-md-7">
         <input type="email" ng-model="user.email" class="form-control" id="email" placeholder="Enter email">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-md-3">Password:</label>
-      <div class="col-md-9">          
+      <div class="col-md-7">          
         <input type="password" ng-model="user.password" class="form-control" id="pwd" placeholder="Enter password">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-md-3">Retype Password:</label>
-      <div class="col-md-9">          
+      <div class="col-md-7">          
         <input type="password" ng-model="user.password2" class="form-control" id="pwd" placeholder="Retype password">
       </div>
     </div>
 
     <div class="form-group">
       <label class="control-label col-md-3">Occupation:</label>
-      <div class="col-md-9">          
+      <div class="col-md-7">          
         <label class="radio-inline">
           <input type="radio" name="optradio" ng-model="user.role"value="doctor" ng-click="doctor=true">Doctor
         </label>
@@ -41,18 +52,18 @@
     </div>
     <div class="form-group" ng-show='!doctor'>
       <label for="sel1" class="control-label col-md-3">University:</label>
-      <div class="col-md-9">
+      <div class="col-md-7">
         <select class="form-control" id="sel1" ng-model="user.uni">
           <option value="kings">King's College London</option>
           <option value="ucl">University College London</option>
         </select>
       </div>
     </div>
-    <p class="text-danger col-md-offset-3 col-md-9">{{ message }}</p>
+    <p class="text-danger col-md-offset-3 col-md-7">{{ message }}</p>
 
     &nbsp
     <div class="form-group">      
-      <div class="col-md-offset-3 col-md-9">
+      <div class="col-md-offset-3 col-md-7">
         <button type="submit" class="btn btn-lg btn-default pull-right" ng-click="register()">Submit</button>
       </div>
     </div>
