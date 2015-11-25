@@ -39,10 +39,12 @@ module.exports = function(app, passport, transporter){
 	});
 
 	app.get('/logout', function(req, res){
-		req.logOut(); // This is a function by Passport.
+		//req.logOut(); // This is a function by Passport.
 						//Passport invalidates cookie
-		console.log("Logout completed");
-		res.redirect('/');
+		req.session.destroy(function(err){
+			console.log("Logout completed");
+			res.redirect('/');
+		})
 	});
 
 	app.delete('/profile/:id', auth, function(req, res){

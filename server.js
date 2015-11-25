@@ -44,7 +44,8 @@ app.use(session({
 	store: new MongoStore({
 		mongooseConnection: mongoose.connection,
 		ttl: 2*60*60
-	})
+	}),
+	unset: 'destroy'
 }));
 app.use(cookieParser())
 app.use(passport.initialize());
