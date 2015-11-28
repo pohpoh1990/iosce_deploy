@@ -27,7 +27,9 @@ module.exports = function(app, passport){
 	var upload = multer({
 	    upload: null,// take uploading process 
 	});
-	var async = require('async');
+	upload.limits = {
+		fileSize: 10*1000*1000
+	}
 
 	app.post('/upload', auth, upload.array('files'), function(req, res){
 		var responseFile = [];
