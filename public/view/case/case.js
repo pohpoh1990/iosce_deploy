@@ -1,7 +1,7 @@
 app.controller('CaseController', ["$scope", "$rootScope", "$timeout", "CaselistFactory", "PeerlistFactory", "$routeParams", "$uibModal",
 function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeParams, $uibModal){
 
-	var startcountdown, countdown, audio
+	var startcountdown, countdown, audio, filepath
 
 	$scope.imgfiletype = [];
 	$scope.audiofiletype = [];
@@ -61,10 +61,27 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 
 
 	$scope.playAudio = function(index){
-		filepath = "upload/"+$scope.onecase.file[index]._id;
-		//console.log("Audio: " +filepath)
-		audio = new Audio(filepath);
-		audio.play();
+		if (filepath == "upload/"+$scope.onecase.file[index]._id){
+			audio.play();
+		} else {
+			filepath = "upload/"+$scope.onecase.file[index]._id;
+			var ext = $scope.onecase.file[index].filename.split('.').pop();
+			//console.log("Ext: "+ext);
+			//console.log("Audio: " +filepath)
+			audio = new Howl({
+			  urls: [filepath],
+			  format: ext,
+			  onend: function() {
+			      console.log('Finished!');
+			  },
+			  onloaderror: function() {
+			      console.log('Error!');
+			  }
+			}).play();
+			/*
+			audio = new Audio(filepath);
+			audio.play();*/
+		}
 		$scope.audioPlaying = true;
 	}
 
