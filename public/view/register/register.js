@@ -35,7 +35,7 @@ app.controller("RegisterController", ["$scope", "$http", "$location", "PeerlistF
 					$scope.message = "Please fill in all fields."
 			} else if ($scope.user.password != $scope.user.password2){
 				$scope.message = "Please check retyped password."
-			} else if (!checkusernamesuccess){
+			} else if (!$scope.checkusernamesuccess){
 				$scope.message = "Please check the availability of your username!"
 			} else {
 			console.log($scope.user);
