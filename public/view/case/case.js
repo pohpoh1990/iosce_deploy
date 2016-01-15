@@ -122,7 +122,7 @@ function($scope, $rootScope, $timeout, CaselistFactory, PeerlistFactory, $routeP
 	$scope.submit = function(){
 		$scope.errorMessage = null;
 		console.log($rootScope.currentUser.caseDone.indexOf($routeParams.caseid))
-		if ($scope.onecase && $rootScope.currentUser.caseDone.indexOf($routeParams.caseid)<0){
+		if ($scope.peerSelected && $scope.onecase && $rootScope.currentUser.caseDone.indexOf($routeParams.caseid)<0){
 			//Show rating modal
 			openRatingModal();
 		};

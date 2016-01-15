@@ -16,9 +16,9 @@ app.controller("RegisterController", ["$scope", "$http", "$location", "PeerlistF
 			$scope.checkusernameerror = null;
 			var newName = $scope.user.username.toLowerCase();
 			if (usernames.indexOf($scope.user.username)>-1){
-				$scope.checkusernamesuccess = "This username has been used. Please use another!"
+				$scope.checkusernameerror = "This username has been used. Please use another!"
 			} else {
-				$scope.checkusernameerror = "Username available!"
+				$scope.checkusernamesuccess = "Username available!"
 			}
 		}
 		
@@ -35,7 +35,7 @@ app.controller("RegisterController", ["$scope", "$http", "$location", "PeerlistF
 					$scope.message = "Please fill in all fields."
 			} else if ($scope.user.password != $scope.user.password2){
 				$scope.message = "Please check retyped password."
-			} else if (!$scope.checkusernamesuccess){
+			} else if ($scope.checkusernameerror){
 				$scope.message = "Please check the availability of your username!"
 			} else {
 			console.log($scope.user);
